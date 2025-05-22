@@ -1,0 +1,141 @@
+/*Стили для головы сайта*/
+header img.logo{max-height: 67px; max-width: 62px;}
+header #bur-menu{display: none; max-height: 40px; max-width: 36px;}
+header #bur-menu:hover{cursor:pointer;}
+header #cart_img{
+    max-height: 42px; max-width: 42px;
+    border-radius: 10px; border-width: 10px;
+    border-style: solid;
+}
+header #cart{border: none; display: block;}
+header{padding-top: 10px; height: 100px; overflow: hidden !important;}
+/*ul{list-style-type: none;}/*styles for php pages*/
+a{text-decoration: none;}/*styles for php pages*/
+header ul li{
+    display: inline;
+    padding: 2vw;
+}
+header .logosection{
+    display: flex;
+    height: inherit;
+}
+header .logosection a{
+    text-decoration: none; border: none;
+}
+header .logosection a:hover{
+    text-decoration: none; border: none;
+}
+header .cartholder a{
+    text-decoration: none; border: none;
+}
+header .cartholder a:hover{
+    text-decoration: none; border: none;
+}
+header .logosection h2{padding-top: 5px;}
+header #cart_counter{
+    border: 1px solid; display: block;
+    border-radius: 10px;
+    height: 61px; margin-right: -20px;
+    padding: 10px 30px 10px 8px;
+    box-sizing: border-box;
+    font-family: "Tahoma" !important;
+}
+.cartholder{display: flex;}
+header #cart_and_prof{display: flex;}
+header #cart_and_prof .profile{margin-left: 1vw; display: flex; align-items: center; position: relative; cursor: pointer;}
+header #cart_and_prof .profile #prof_pic{max-width: 50px; max-height: 50px;}
+
+.profile-dropdown {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+    min-width: 150px;
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-item {
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+}
+
+
+.dropdown-item:hover {
+    background-color: #f5f5f5;
+}
+header {
+    overflow: visible !important; /*для выпадающего меню профиля*/
+}
+
+/*Стили "альтернативного" меню - для телефона*/
+#alt-menu{display: none;}
+#alt-menu #close_cross{
+    border: none;
+    margin-left: 85vw; margin-top: 5vw;
+}
+#alt-menu #close_cross:hover{cursor:pointer;}
+#alt-menu #close_cross #close_cross_img{max-width: 30px; max-height: 30px;}
+#alt-menu nav.container.flex{flex-flow: column; height: 55vh; margin-top: 15vh; overflow: hidden;}
+#alt-menu #cart_counter_phone{
+    border: 1px solid; display: block;
+    border-radius: 10px;
+    height: 61px; margin-right: -20px;
+    padding: 10px 30px 10px 8px;
+    box-sizing: border-box;
+}
+#alt-menu #cart_img_phone{
+    max-height: 42px; max-width: 42px;
+    border-radius: 10px; border-width: 10px;
+    border-style: solid;
+}
+#alt-menu #cart_phone{border: none; display: block;}
+#alt-menu #cart_counter_phone{
+    border: 1px solid; display: block;
+    border-radius: 10px;
+    height: 61px; margin-right: -20px;
+    padding: 10px 30px 10px 8px;
+    box-sizing: border-box;
+}
+#alt-menu .cartholder{margin-top: 2vh;}
+
+
+/*Стили для подвала сайта*/
+footer{height: 100px; margin-top: 10px; margin-bottom: 10px;}
+footer img.media{max-height: 40px; max-width: 40px;}
+footer #copyright_bigscreen{display: flex;}
+footer #copyright_smallscreen{margin-top: 12px ; display: none;}
+footer .mediaholder{width: 174px; display: flex; justify-content: space-between;}
+
+/*Адаптивное отображение при уменьшении вкладки*/
+@media screen and (max-width: 684px) {
+    header ul li{padding:0.5vw;}
+}
+@media screen and (max-width: 612px) {
+    header nav{display:none;}
+    header .cartholder{display:none;}
+    header img.logo{max-height: 64px; max-width: 60px;}
+    header #logo-name{display: none;}
+    header #bur-menu{display: flex !important;}
+}
+@media screen and (max-width: 550px) {
+    footer.container.flex{flex-flow: column; align-items: center;}
+    footer .mediaholder{width: 234px !important;}
+    footer #copyright_bigscreen{display: none;}
+    footer #copyright_smallscreen{display: block !important;}
+}
+
+/*Классы для многоразового использования*/
+.container{
+    width: 87.5vw; margin: 0 auto;
+    overflow: auto;
+}
+.flex {
+    display: flex; justify-content: space-between;
+    align-items: center; height: 100%;
+}

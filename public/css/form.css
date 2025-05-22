@@ -1,0 +1,86 @@
+#form.container.flex {
+  flex-flow: column;
+  text-align: justify;
+  gap: 1vh;
+  background-color: #fff;
+  color: #343a40;
+  border-radius: 10px;
+  padding: 25px;
+  box-sizing: border-box;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+#form.container.flex input {
+  width: 20vw;
+  border-color: #d7dEE5;
+  border-radius: 8px;
+  border-image: none;
+  border-style: solid;
+  padding: 3px 15px;
+  color: #343a40;
+}
+#form.container.flex input {
+  height: 3vh;
+  font-size: 16px;
+}
+#form.container.flex label {
+  color: #343a40;
+  font-size: 16px;
+}
+#form.container.flex .auth {
+  flex-flow: column;
+  text-align: justify;
+  gap: 1vh;
+  background-color: #fff;
+  color: #343a40;
+  border-radius: 10px;
+  padding: 25px;
+  box-sizing: border-box;
+}
+#form.container.flex button {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 200;
+  display: block;
+  text-align: center;
+  padding: 5px 11.5vw;
+  background-color: #78bc61;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+#form.container.flex button:hover {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 200;
+  display: block;
+  text-align: center;
+  padding: 5px 11.5vw;
+  background-color: #89cd72;
+  border: none;
+  border-radius: 10px;
+}
+#form.container.flex button#reg {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 200;
+  display: block;
+  text-align: center;
+  padding: 5px 8.5vw;
+  background-color: #f72c3d;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+#form.container.flex button#reg:hover {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 200;
+  display: block;
+  text-align: center;
+  padding: 5px 8.5vw;
+  background-color: #ff4e5f;
+  border: none;
+  border-radius: 10px;
+}
