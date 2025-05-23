@@ -51,12 +51,11 @@ class AuthController extends Controller
         
     public function login_view()
         {
+            $cartController = new CartController();
+            $cartSummary = $cartController->getCartSummary();
             return view('login', [
                 'pageTitle' => 'Вход | Золотой Грифон',
-                'cartItems' => [
-                    'total' => 0, // Замените на реальные данные
-                    'price' => 0   // Замените на реальные данные
-                ]
+                'cartItems' => $cartSummary
             ]);
         }
 
@@ -86,12 +85,11 @@ class AuthController extends Controller
 
     public function registration_view()
         {
+            $cartController = new CartController();
+            $cartSummary = $cartController->getCartSummary();
             return view('registration', [
                 'pageTitle' => 'Регистрация | Золотой Грифон',
-                'cartItems' => [
-                    'total' => 0, // Замените на реальные данные
-                    'price' => 0   // Замените на реальные данные
-                ]
+                'cartItems' => $cartSummary
             ]);
         }
 

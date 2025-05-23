@@ -8,12 +8,11 @@ class HomeController extends Controller
 {
     public function index()
     {
+        $cartController = new CartController();
+        $cartSummary = $cartController->getCartSummary();
         return view('home', [
             'pageTitle' => 'Главная | Золотой Грифон',
-            'cartItems' => [
-                'total' => 0, // Вставить реальные данные
-                'price' => 0   // Вставить реальные данные
-            ]
+            'cartItems' => $cartSummary
         ]);
     }
 }

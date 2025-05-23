@@ -89,11 +89,81 @@
 
 @push('scripts')
 <script>
-document.querySelectorAll('[data-action="add-to-cart"]').forEach(button => {
-    button.addEventListener('click', function() {
-        const productId = this.dataset.productId;
-        console.log('Добавлен товар ID:', productId);
+    document.addEventListener('DOMContentLoaded', function() {
+        // Обработка всех кнопок "В корзину"
+        document.querySelectorAll('[data-action="add-to-cart"]').forEach(button => {
+            button.addEventListener('click', function() {
+                const productId = this.dataset.productId;
+                const button = this;
+                const originalText = button.textContent;
+                
+                button.disabled = true;
+                button.textContent = 'Добавляем...';
+                
+                fetch('/cart/add', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    },
+                    body: JSON.stringify({ product_id: productId })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Товар добавлен в корзину');
+                        updateCartCounters(data.cart);
+                    } else {
+                        alert(data.message || 'Ошибка при добавлении товара');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Произошла ошибка');
+                })
+                .finally(() => {
+                    button.disabled = false;
+                    button.textContent = originalText;
+                });
+            });
+        });
+
+        function updateCartCounters(cartData) {
+            const totalItems = cartData.total;
+            const totalPrice = cartData.price;
+            
+            const cartCounters = document.querySelectorAll('#cart_counter, #cart_counter_phone');
+            const priceCounters = document.querySelectorAll('#price_counter, #price_counter_phone');
+            
+            if (cartCounters.length && priceCounters.length) {
+                const priceText = `${totalPrice.toLocaleString('ru-RU')} рублей`;
+                const itemText = `${totalItems} ${getNoun(totalItems, 'товар', 'товара', 'товаров')}`;
+                
+                cartCounters.forEach(counter => {
+                    counter.innerHTML = `${itemText}<br><span id="price_counter">${priceText}</span>`;
+                });
+                
+                priceCounters.forEach(counter => {
+                    counter.textContent = priceText;
+                });
+            }
+        }
+
+        function getNoun(number, one, two, five) {
+            let n = Math.abs(number);
+            n %= 100;
+            if (n >= 5 && n <= 20) {
+                return five;
+            }
+            n %= 10;
+            if (n === 1) {
+                return one;
+            }
+            if (n >= 2 && n <= 4) {
+                return two;
+            }
+            return five;
+        }
     });
-});
 </script>
 @endpush

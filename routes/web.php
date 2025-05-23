@@ -11,6 +11,7 @@ Route::post('/registration', [App\Http\Controllers\AuthController::class, 'regis
 Route::get('/registration', [App\Http\Controllers\AuthController::class, 'registration_view'])->name('registration');
 */
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\StoreController;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -22,9 +23,12 @@ Route::controller(App\Http\Controllers\AuthController::class)->group(function() 
     Route::get('/registration', 'registration_view')->name('registration');
     Route::post('/registration', 'registration');
     Route::post('/logout', 'logout')->name('logout');
-    
-    //Route::get('/admin', 'admin')->name('admin')->middleware('auth');
 });
+
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::post('/cart/add', [CartController::class, 'addToCart']);
+Route::post('/cart/update', [CartController::class, 'updateCart']);
+Route::post('/order/process', [CartController::class, 'processOrder']);
 
 Route::middleware('auth')->prefix('admin')->group(function() {
     Route::get('/', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin');

@@ -102,21 +102,64 @@
     }
 
     function addToCart(productId) {
-        fetch('/api/add_to_cart', {
+        fetch('/cart/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
             },
-            body: JSON.stringify({ productId: productId })
+            body: JSON.stringify({ product_id: productId })
         })
         .then(response => response.json())
         .then(data => {
-            alert('Товар добавлен в корзину');
+            if (data.success) {
+                alert('Товар добавлен в корзину');
+                updateCartCounters(data.cart);
+            } else {
+                alert(data.message || 'Ошибка при добавлении товара');
+            }
         })
         .catch(error => {
-            console.error('Ошибка:', error);
+            console.error('Error:', error);
+            alert('Произошла ошибка');
         });
+    }
+
+    function updateCartCounters(cartData) {
+        const totalItems = cartData.total;
+        const totalPrice = cartData.price;
+        
+        const cartCounters = document.querySelectorAll('#cart_counter, #cart_counter_phone');
+        const priceCounters = document.querySelectorAll('#price_counter, #price_counter_phone');
+        
+        if (cartCounters.length && priceCounters.length) {
+            const priceText = `${totalPrice.toLocaleString('ru-RU')} рублей`;
+            const itemText = `${totalItems} ${getNoun(totalItems, 'товар', 'товара', 'товаров')}`;
+            
+            cartCounters.forEach(counter => {
+                counter.innerHTML = `${itemText}<br><span>${priceText}</span>`;
+            });
+            
+            priceCounters.forEach(counter => {
+                counter.textContent = priceText;
+            });
+        }
+    }
+
+    function getNoun(number, one, two, five) {
+        let n = Math.abs(number);
+        n %= 100;
+        if (n >= 5 && n <= 20) {
+            return five;
+        }
+        n %= 10;
+        if (n === 1) {
+            return one;
+        }
+        if (n >= 2 && n <= 4) {
+            return two;
+        }
+        return five;
     }
 
     document.addEventListener('DOMContentLoaded', function() {

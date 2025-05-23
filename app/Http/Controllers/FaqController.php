@@ -8,12 +8,11 @@ class FaqController extends Controller
 {
     public function index()
     {
+        $cartController = new CartController();
+        $cartSummary = $cartController->getCartSummary();
         return view('faq', [
             'pageTitle' => 'FAQ | Золотой Грифон',
-            'cartItems' => [
-                'total' => 0, // Замените на реальные данные
-                'price' => 0   // Замените на реальные данные
-            ]
+            'cartItems' => $cartSummary
         ]);
     }
 }

@@ -37,7 +37,8 @@ class StoreController extends Controller
             $currentSection = 'Все товары';
             $currentSubSection = 'Каталог';
         }
-
+        $cartController = new CartController();
+        $cartSummary = $cartController->getCartSummary();
         return view('store', [
             'pageTitle' => 'Каталог | Золотой Грифон',
             'products' => $products,
@@ -47,7 +48,8 @@ class StoreController extends Controller
             'rightText' => $rightText,
             'currentSection' => $currentSection,
             'currentSubSection' => $currentSubSection,
-            'loading' => $products->isEmpty()
+            'loading' => $products->isEmpty(),
+            'cartItems' => $cartSummary
         ]);
     }
 
@@ -69,14 +71,16 @@ class StoreController extends Controller
         $allImages = array_map(function($image) {
             return asset('storage/' . ltrim($image, '/'));
         }, $allImages);
-        
+        $cartController = new CartController();
+        $cartSummary = $cartController->getCartSummary();
         return view('product', [
             'pageTitle' => $product->name_of_prod . ' | Золотой Грифон',
             'product' => $product,
             'displayCategory' => $displayCategory,
             'breadcrumbs' => $breadcrumbs,
             'allImages' => $allImages,
-            'loading' => false
+            'loading' => false,
+            'cartItems' => $cartSummary
         ]);
     }
     

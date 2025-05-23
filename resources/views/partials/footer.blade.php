@@ -7,4 +7,3 @@
   </div>
   <span id="copyright_smallscreen">Золотой Грифон &copy; Все права защищены</span>
 </footer>
-<script src="/mvc_part/Scripts/cart.js"></script>
