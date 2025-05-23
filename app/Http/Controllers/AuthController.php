@@ -11,6 +11,20 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
+
+    public function admin()
+        {
+            $isAdmin = Admin::where('usr_id', Auth::id())->exists();
+    
+            if ($isAdmin) {
+                return view('admin', ["user" => Auth::user()]);
+            }
+            
+            return redirect('/login')->withErrors([
+                'access' => 'Доступ запрещен: требуется права администратора'
+            ]);
+        }
+
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -27,8 +41,12 @@ class AuthController extends Controller
         }
         
         Auth::login($user);
-        
-        return redirect('/admin');
+
+        if (Admin::where('usr_id', $user->id)->exists()) {
+            return redirect()->route('admin');
+        }
+
+        return redirect('/');
     }
         
     public function login_view()
@@ -42,19 +60,6 @@ class AuthController extends Controller
             ]);
         }
 
-    public function admin()
-        {
-            $admins = Admin::all();
-
-            foreach($admins as $admin){
-                if(Auth::user()->id==$admin->usr_id){
-                    return view('admin', [
-                        "user" => Auth::user()
-                    ]);
-                }
-            }
-            return redirect('/login');
-        }
 
     public function registration(Request $request)
     {

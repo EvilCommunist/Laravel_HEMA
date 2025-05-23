@@ -11,8 +11,8 @@ class HomeController extends Controller
         return view('home', [
             'pageTitle' => 'Главная | Золотой Грифон',
             'cartItems' => [
-                'total' => 0, // Замените на реальные данные
-                'price' => 0   // Замените на реальные данные
+                'total' => 0, // Вставить реальные данные
+                'price' => 0   // Вставить реальные данные
             ]
         ]);
     }

@@ -1,34 +1,3 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <link rel="icon" href="{{ asset('assets/goldgrif.png') }}">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><?= $pageTitle ?? 'Золотой Грифон' ?></title>
-  <link rel="stylesheet" href="/mvc_part/css/adaptive styles.css">
-  <link rel="stylesheet" href="/mvc_part/css/main styles.css">
-  <?php 
-  $currentPage = $_SERVER['REQUEST_URI'] ?? '/';
-  $pageStyles = [
-    '/home' => 'homeStyle.css',
-    '/store' => 'storeStyle.css',
-    '/cart' => 'cartStyles.css',
-    '/ordersFAQ' => 'howToStyles.css',
-    '/login' => 'formStyles.css',
-    '/auth' => 'formStyles.css',
-    '/product' => 'cardStyle.css',
-    '/admin' => 'adminStyles.css',
-    '/add_product' => 'addStyles.css',
-    '/edit_product' => 'changeStyles.css'
-  ];
-  
-  foreach ($pageStyles as $path => $style) {
-    if (strpos($currentPage, $path) === 0) {
-      echo '<link rel="stylesheet" href="/mvc_part/css/' . $style . '">';
-    }
-  }
-  ?>
-</head>
 <body>
 <div id="alt-menu" style="display: none;">
   <button id="close_cross">
